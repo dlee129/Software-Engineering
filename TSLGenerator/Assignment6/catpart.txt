@@ -1,0 +1,60 @@
+#FileName
+
+     Number of files:
+          0.                        [property emptyfile][error]
+          >0.                       
+
+     Name:
+          Empty.                    [if emptyfile]
+          Not Empty.                [if !emptyfile]
+
+#--
+     Content:
+          exists.                   [if !emptyfile]
+          does not exist.           [error]
+
+#OPT
+     Commands:
+          -b.                       [property command1]
+          -f.                       [property command2]
+          -l.                       [property command3]
+          -i.                       [property command4]
+
+     Number of Commands:
+          0.                        [single]
+          >0.
+
+     Content:
+          command.                   [if !command1 && !command2 && !command3 && !command4][error]
+
+#String from Files
+
+     Length:
+          0.                        [property zerovalue][error]
+          1.                        [property char]
+          >1.
+
+     Content:
+          alphanumeric characters.  [if !zerovalue]
+          special characters.       [if !zerovalue]
+          spaces.                   [if !zerovalue && !char]
+
+     From:
+          zero.                     [if !emptyfile][single]
+          one.                      [if !emptyfile][single]
+          many.                     [if !emptyfile]
+
+#String to File
+
+     To:
+          word.                     [if !emptyfile]
+
+     Length:
+          0.                        [property zerovalue][error]
+          1.                        [if char]
+          >1.
+
+     Content:
+          alphanumeric characters.   [if !zerovalue]
+          special characters.        [if !zerovalue]
+          spaces.                    [if !zerovalue]
